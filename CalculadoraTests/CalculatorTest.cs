@@ -28,6 +28,20 @@ namespace CalculadoraTests
         }
 
         [Test]
+        public void Add_HugeNumbers_ReturnsInfinity()
+        {
+            // Arrange
+            double a = double.MaxValue;
+            double b = double.MaxValue;
+
+            // Act
+            var result = _calculator.Add(a, b);
+
+            // Assert
+            Assert.That(double.IsInfinity(result));
+        }
+
+        [Test]
         public void Subtract_ReturnsCorrectDifference()
         {
             // Arrange
@@ -39,6 +53,20 @@ namespace CalculadoraTests
 
             // Assert
             Assert.That(result, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void Subtract_HugeNumbers_ReturnsInfinity()
+        {
+            // Arrange
+            double a = double.MinValue;
+            double b = double.MaxValue;
+
+            // Act
+            var result = _calculator.Subtract(a, b);
+
+            // Assert
+            Assert.That(double.IsInfinity(result));
         }
 
         [Test]
